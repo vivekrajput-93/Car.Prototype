@@ -3,11 +3,12 @@ const { PORT } = require("./config/ServerConfig");
 const bodyParser = require("body-parser");
 const connectDB = require("./config/db")
 const apiRoutes  = require("./routes/index");
-
+const cors = require("cors")
 
 const app = express();
 app.use(express.json());
 
+app.use(cors());
 
 // Database connection
 connectDB();

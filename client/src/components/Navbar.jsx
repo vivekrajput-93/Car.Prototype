@@ -38,7 +38,7 @@ const Navbar = () => {
       </ul>
       <div className="auth-container">
         <Link to="/login">Login</Link>
-        <Link to="/regsiter">Register</Link>
+        <Link to="/register">Register</Link>
       </div> 
       <div className="hamburger" onClick={handleClick}>
           {click ? <FaTimes size={20} style={{ color: "#333" }} /> : <FaBars size={20} style={{ color: "#333" }} />}
