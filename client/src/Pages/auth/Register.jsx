@@ -21,7 +21,7 @@ const Register = () => {
       try {
         const user = await axios.post("http://localhost:5001/api/v1/register", {username, email, password})
         if(user && user.data.success) {
-          toast.success(user.data.message)
+          toast.success("Successfully registered !")
           navigate("/");
         } else {
           toast.error("User is registered !")
@@ -47,6 +47,7 @@ const Register = () => {
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
             />
             <input
               type="email"
@@ -54,6 +55,7 @@ const Register = () => {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <input
               type="password"
@@ -61,6 +63,7 @@ const Register = () => {
               placeholder="Paasword"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           <button className="register-btn" onClick={notify}>
             Sign up <FaArrowRight className="register-arrow" />

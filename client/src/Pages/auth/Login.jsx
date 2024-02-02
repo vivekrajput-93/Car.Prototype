@@ -1,11 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../CSS/Login.css";
-import { FcGoogle } from "react-icons/fc";
 import regsiter from "../../assets/register.jpg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
+import { useAuth } from "../../context/auth";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [auth, setAuth] = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:5001/api/v1/login", {
+        email,
+        password,
+      });
+      if (res && res.data.success) {
+        toast.success(res.data.success);
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem('auth', JSON.stringify(res.data))
+        navigate("/",);
+      } else {
+        toast.error("Somethin went wrong")
+      }
+    } catch (error) {
+      console.log(error);
+      console.log("Somethin went wrong !");
+    }
+  };
+
   return (
     <div className="main-login-container">
       <div className="left-auth-login-container">
@@ -13,21 +46,32 @@ const Login = () => {
           <h1>Welcome back! Login</h1>
         </section>
         <section className="email-auth">
-          <form className="form-control">
-            <input type="text" name="username" placeholder="Username" />
-            <input type="email" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Paasword" />
-          </form>
-          <div className="password-container">
+          <form onSubmit={handleLogin} className="form-control">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Paasword"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          <section className="password-container">
             <div className="forgot-container">
-              <input type="checkbox" name="check" id="" />
+              <input type="checkbox" className="check" name="check"  />
               <label>Keep me loged in</label>
             </div>
             <Link className="forgot-link">Forgot Paasword</Link>
-          </div>
+          </section>
           <button className="register-btn">
             Login <FaArrowRight className="register-arrow" />
           </button>
+          </form>
           <hr className="hr-line" />
           <span className="acc-span">
             Don't have an account yet? <Link to="/register">Regsiter</Link>

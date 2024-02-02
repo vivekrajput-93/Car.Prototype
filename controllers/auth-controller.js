@@ -25,7 +25,7 @@ const create = async (req, res) => {
             password : hashedPassword,
         });
 
-        return res.status(201).json({
+        return res.status(201).send({
             success: true,
             message: "Successfully created User!",
             data: newUser,
@@ -50,7 +50,7 @@ const signIn = async(req, res) => {
             email: req.body.email,
             password : req.body.password
         })
-        return res.status(200).json({
+        return res.status(200).send({
             success : true,
             message : "Successfully logined !",
             data : user,
