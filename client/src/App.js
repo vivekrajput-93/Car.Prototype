@@ -8,12 +8,16 @@ import OurTeam from "./Pages/OurTeam";
 import Vehicle from "./Pages/Vehicle";
 import Login from "./Pages/auth/Login";
 import Register from "./Pages/auth/Register";
+import { ToastContainer } from "react-toastify";
+
 
 function App() {
   return (
+
     <div className="App">
       <Router>
         <Navbar />
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

@@ -4,7 +4,8 @@ import regsiter from "../../assets/register.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import axios from "axios";
-import toast, { Toaster } from 'react-hot-toast';
+import {toast, ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Register = () => {
@@ -14,17 +15,23 @@ const Register = () => {
   const navigate = useNavigate();
 
 
-  const notify = () => toast('Here is your toast.');
+ 
 
   const handleSubmit = async(e) => {
       e.preventDefault();
       try {
         const user = await axios.post("http://localhost:5001/api/v1/register", {username, email, password})
         if(user && user.data.success) {
-          toast.success("Successfully registered !")
+          toast.success("Successfully registered!" , {
+            autoClose: 1000,
+            position : "top-center"
+          })
           navigate("/");
         } else {
-          toast.error("User is registered !")
+          toast.error("User is already registered !", {
+            autoClose : 3000,
+            position : "top-center"
+          })
         }
       } catch (error) {
         console.log(error)
@@ -65,7 +72,7 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          <button className="register-btn" onClick={notify}>
+          <button className="register-btn" >
             Sign up <FaArrowRight className="register-arrow" />
           </button>
           </form>

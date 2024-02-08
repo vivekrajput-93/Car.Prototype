@@ -5,7 +5,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import { useAuth } from "../../context/auth";
 import axios from "axios";
-import toast from "react-hot-toast";
+import {toast, ToastContainer} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -23,13 +24,14 @@ const Login = () => {
       });
       if (res && res.data.success) {
         toast.success(res.data.success);
+        console.log(res.data)
         setAuth({
           ...auth,
           user: res.data.user,
           token: res.data.token,
         });
         localStorage.setItem('auth', JSON.stringify(res.data))
-        navigate("/",);
+        navigate(location.state || "/",);
       } else {
         toast.error("Somethin went wrong")
       }
