@@ -23,8 +23,8 @@ const Login = () => {
         password,
       });
       if (res && res.data.success) {
-        toast.success(res.data.success);
-        console.log(res.data)
+        toast.success(res.data.message);
+        console.log(res.data.success)
         setAuth({
           ...auth,
           user: res.data.user,

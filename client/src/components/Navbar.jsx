@@ -18,22 +18,16 @@ const Navbar = () => {
 
 
   const handleLogout = () => {
-    console.log("User before logout:", auth.user);
-  
-    setAuth((prevAuth) => {
-      return {
-        ...prevAuth,
-        user: null,
-        token: "",
-      };
+    setAuth({
+      ...auth,
+      user: null,
+      token: " ",
     });
-  
-    localStorage.removeItem("user");
-    toast.success("Successfully logout");
-    navigate("/");
+    localStorage.removeItem("auth");
+    toast.success("Logout successfully");
   };
 
-  console.log(auth?.user)
+  console.log(auth.user)
 
 
   return (
@@ -67,10 +61,11 @@ const Navbar = () => {
                 <Link to="/register">Register</Link>
               </div> 
         ) : (
-          <>
+          <div className="auth-container">
           <button className="logout" onClick={handleLogout}>Logout</button>
-          <p>{auth?.user?.name}</p>
-          </>
+          <p>{auth?.user?.username}</p>
+        
+          </div>
         )}
       <div className="hamburger" onClick={handleClick}>
           {click ? <FaTimes size={20} style={{ color: "#333" }} /> : <FaBars size={20} style={{ color: "#333" }} />}

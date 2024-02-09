@@ -1,97 +1,135 @@
 const { JWT_SECRET } = require("../config/ServerConfig");
-const { comparePassword } = require("../helper/authHelper");
+const { comparePassword, hashPassword } = require("../helper/authHelper");
 const User = require("../models/userModel");
 const UserRepository = require("../repository/auth-repository");
 const JWT = require("jsonwebtoken");
 
-class UserService {
+class AuthService {
   constructor() {
     this.userRepository = new UserRepository();
   }
 
   async create(data) {
     try {
-      const users = await this.userRepository.create(data);
-      return users;
+      const existingUser = await this.userRepository.findBy({ email: data.email });
+
+      if (existingUser) {
+        return {
+          success: false,
+          message: "User already exists, please login!",
+        };
+      }
+
+      const hashedPassword = await hashPassword(data.password);
+
+      const newUser = await this.userRepository.create({
+        username: data.username,
+        email: data.email,
+        password: hashedPassword,
+      });
+
+      return {
+        success: true,
+        message: "Successfully created User!",
+        data: newUser,
+        error: {},
+      };
+
     } catch (error) {
-      console.log("Somethin went wrong with service layer");
-      throw error;
+      console.log(error);
+      return {
+        success: false,
+        message: "Unable to create user",
+        data: {},
+        error,
+      };
     }
   }
 
   async signIn(data) {
     try {
       const user = await this.getUserByEmail(data.email);
+
       if (!user) {
-        console.log("User not found");
-        throw { error: "User not found, please register" };
-      }
-      const passwordMatch = await comparePassword(data.password, user.password);
-      if (!passwordMatch) {
-        console.log("Incorrect password");
-        throw { error: "Incorrect password" };
+        return {
+          success: false,
+          message: "User not found, please register",
+        };
       }
 
-      const newToken = await this.createToken({ _id: data.id });
-      return newToken;
+      const passwordMatch = await comparePassword(data.password, user.password);
+
+      if (!passwordMatch) {
+        return {
+          success: false,
+          message: "Incorrect password",
+        };
+      }
+
+      const token = await this.createToken({ _id: user._id });
+
+      return {
+        success: true,
+        message: "Successfully logged in!",
+         response : { 
+          username : user.username,
+          email : user.email,
+           token },
+        error: {},
+      };
+
     } catch (error) {
       console.error("Error in signIn method:", error);
-      throw error;
+      return {
+        success: false,
+        message: "Unable to login, please try again",
+        data: {},
+        error,
+      };
     }
   }
-
-
-
 
   async destroy(userId) {
     try {
       const response = await this.userRepository.destroy({ _id: userId });
       return true;
     } catch (error) {
-      console.log("Somethin went wrong with service layer");
+      console.log("Something went wrong with service layer");
       throw error;
     }
   }
-
-
 
   async get(userId) {
     try {
-      const users = await this.userRepository.get(userId);
-      return users;
+      const user = await this.userRepository.get(userId);
+      return user;
     } catch (error) {
-      console.log("Somethin went wrong with service layer");
+      console.log("Something went wrong with service layer");
       throw error;
     }
   }
 
-
-
-
   async createToken(userId) {
     try {
-      const token = await JWT.sign({ _id: userId }, JWT_SECRET, {
+      const token = JWT.sign({ _id: userId }, JWT_SECRET, {
         expiresIn: "7d",
       });
       return token;
     } catch (error) {
-      console.log("somethin went wrong at service layer");
+      console.log("Something went wrong at service layer");
       throw error;
     }
   }
-
-
-  
 
   async getUserByEmail(email) {
     try {
       const user = await this.userRepository.findBy({ email });
       return user;
     } catch (error) {
-      console.log("somethin went wrong at service layer");
+      console.log("Something went wrong at service layer");
       throw error;
     }
   }
 }
 
-module.exports = UserService;
+module.exports = AuthService;
