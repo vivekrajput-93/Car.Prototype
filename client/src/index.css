@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
 
+
+
 * {
   margin: 0;
   padding: 0;
@@ -7,28 +9,6 @@
   font-family: 'Manrope', sans-serif;
   scrollbar-width: thin;
 }
-
-
-
-::-webkit-scrollbar {
-  width: 10px;
-  color: blue;
-}
-
-::-webkit-scrollbar-track {
-  border-radius: 20px;
-  border: none;
-} 
- 
-
- ::-webkit-scrollbar-thumb {
-  background: var(--main-color); 
-  border-radius: 10px;
-  border: none !important;
-} 
-
-
-
 
 ul li {
   list-style-type: none;

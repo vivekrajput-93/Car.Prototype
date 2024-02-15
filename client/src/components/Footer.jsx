@@ -10,6 +10,7 @@ const Footer = () => {
           <span className="span-section">
             <img src={logo} alt="logo" className="footer-logo-link" /> <p>CarHub</p>
           </span>
+
           <span>Carhub 2024 
             <br />
             All Rights Reserved © About</span>
@@ -49,4 +50,5 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+ export default Footer;
+

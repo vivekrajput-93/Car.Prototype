@@ -77,3 +77,24 @@
     font-size: .8rem;
     color: #666;
 }
+
+
+ @media screen and (max-width: 768px) {
+    .main-footer-container {
+           padding: 2rem; 
+    }
+    .sub-footer-container-1 { 
+           height: auto; 
+           margin-top: 1rem; 
+    }
+    .main-link-section {
+        margin-right: 0; 
+        flex-direction: column; 
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-around;
+        position: relative;
+    }
+
+
+}

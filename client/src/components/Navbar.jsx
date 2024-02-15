@@ -5,6 +5,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assets/favicon.ico";
 import { useAuth } from "../context/auth";
 import { toast } from "react-toastify";
+import PersonIcon from '@mui/icons-material/Person';
 
 const Navbar = () => {
   const [auth, setAuth] = useAuth()
@@ -16,15 +17,24 @@ const Navbar = () => {
 
   const handleLinkClick = () => setClick(false);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
 
   const handleLogout = () => {
+    
     setAuth({
       ...auth,
       user: null,
       token: " ",
     });
     localStorage.removeItem("auth");
-    toast.success("Logout successfully");
+    toast.success("Logout successfully", {
+      position : "top-center"
+    });
   };
 
   console.log(auth.user)
@@ -57,14 +67,18 @@ const Navbar = () => {
       </ul>
         {!auth.user ? (
                 <div className="auth-container">
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
+                <Link to="/login" className="login">Login</Link>
+                <Link to="/register" className="register">Register</Link>
               </div> 
         ) : (
-          <div className="auth-container">
-          <button className="logout" onClick={handleLogout}>Logout</button>
-          <p>{auth?.user?.username}</p>
-        
+          <div className="drop-container">
+          <button onClick={toggleDropdown} className="drop-btn">{auth?.user?.username}</button>
+          {isOpen && (
+            <div className="drop-content">
+              <span>Logout</span>
+              <span>dashboard</span>
+            </div>
+          )}
           </div>
         )}
       <div className="hamburger" onClick={handleClick}>

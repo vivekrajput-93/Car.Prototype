@@ -101,6 +101,13 @@ body {
 
 @media screen and (max-width:1000px) {
 
+
+    .home-container {
+        display: flex;
+        height: 60vh;
+        margin-bottom: 3rem;
+    }
+
     .main-text {
         font-size: 3rem;
         font-weight: 900;
@@ -122,3 +129,16 @@ body {
 }
 
 
+@media screen and (max-width:1000px) {
+
+    .left-container {
+        width: 100%;
+    }
+
+    .main-text {
+        width: 100%;
+        text-align: center;
+    }
+
+
+}

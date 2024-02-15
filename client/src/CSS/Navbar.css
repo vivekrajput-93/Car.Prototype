@@ -47,6 +47,9 @@
     font-weight: 800;
 }
 
+
+
+
 .hamburger {
     display: none;
     cursor: pointer;
@@ -86,6 +89,8 @@
         align-items: center;
         justify-content: start;
     }
+
+    
     .active li{
         padding: 15px;
         font-weight: 600;
@@ -104,3 +109,58 @@
 
 }
 
+.logout-btn {
+    border: none;
+    outline: line;
+    cursor: pointer;
+}
+
+.register, .logout-btn {
+    background-color: #eee;
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: black;
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+.username {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #eee;
+    padding: 0px 10px;
+    border-radius: 20px;
+    color: #eee;
+    padding-bottom: 2px;
+    font-weight: 500;
+}
+
+.login {
+    padding: 5px 15px;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    
+}
+
+.drop-container {
+    position: relative;
+    display: inline-block;
+    right: -18rem;
+}
+
+
+.drop-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.drop-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
