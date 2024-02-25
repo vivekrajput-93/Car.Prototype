@@ -47,6 +47,82 @@
     font-weight: 800;
 }
 
+.logout-btn {
+    border: none;
+    outline: line;
+    cursor: pointer;
+}
+
+.register, .logout-btn {
+    background-color: #eee;
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: black;
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+.username {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #eee;
+    padding: 0px 10px;
+    border-radius: 20px;
+    color: #eee;
+    padding-bottom: 2px;
+    font-weight: 500;
+}
+
+.login {
+    padding: 5px 15px;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    
+}
+
+.drop-container {
+    position: relative;
+    display: inline-block;
+    right: -18rem;
+}
+
+
+.drop-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.drop-btn {
+ background-color: #fff;
+ border: none;
+ padding: 5px 25px;
+ cursor: pointer;
+ border-radius: 20px;
+}
+
+.drop-container {
+    position: relative;
+    left: 35rem;
+    margin-top: -.8rem;
+}
+
+
+.auth-contain {
+    position: absolute;
+    right: -1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background-color: #fff;
+    padding: 10px 15px;
+    margin-top: .2rem;
+    border-radius: 10px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
 
 
 
@@ -109,58 +185,3 @@
 
 }
 
-.logout-btn {
-    border: none;
-    outline: line;
-    cursor: pointer;
-}
-
-.register, .logout-btn {
-    background-color: #eee;
-    padding: 5px 15px;
-    border-radius: 20px;
-    color: black;
-    font-size: .9rem;
-    font-weight: 700;
-}
-
-.username {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid #eee;
-    padding: 0px 10px;
-    border-radius: 20px;
-    color: #eee;
-    padding-bottom: 2px;
-    font-weight: 500;
-}
-
-.login {
-    padding: 5px 15px;
-    border: 1px solid #eee;
-    border-radius: 20px;
-    
-}
-
-.drop-container {
-    position: relative;
-    display: inline-block;
-    right: -18rem;
-}
-
-
-.drop-content {
-    display: flex;
-    flex-direction: column;
-}
-
-.drop-btn {
-    background-color: #3498db;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}

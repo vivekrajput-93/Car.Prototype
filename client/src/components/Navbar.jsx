@@ -74,9 +74,9 @@ const Navbar = () => {
           <div className="drop-container">
           <button onClick={toggleDropdown} className="drop-btn">{auth?.user?.username}</button>
           {isOpen && (
-            <div className="drop-content">
-              <span>Logout</span>
-              <span>dashboard</span>
+            <div className="auth-contain">
+              <div onClick={handleLogout}>Logout</div>
+              <div>dashboard</div>
             </div>
           )}
           </div>
