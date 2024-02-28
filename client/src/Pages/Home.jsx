@@ -2,6 +2,7 @@ import React from 'react'
 import "../CSS/Home.css";
 import homeBg from "../assets/hero-bg.png";
 import hero from "../assets/hero.png";
+import { IoIosArrowForward } from "react-icons/io";
 
 const Home = () => {
   return (
@@ -23,5 +24,6 @@ const Home = () => {
     </div>
   )
 }
+
 
 export default Home

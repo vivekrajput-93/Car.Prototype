@@ -1,54 +1,58 @@
 import React from "react";
-import logo from "../assets/favicon.ico";
 import "../CSS/Footer.css";
+import { FaFacebook, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import logo from "../assets/favicon.ico"
 
 const Footer = () => {
   return (
-    <div className="main-footer-container">
-      <section className="sub-footer-container-1">
-        <div className="main-logo-section">
-          <span className="span-section">
-            <img src={logo} alt="logo" className="footer-logo-link" /> <p>CarHub</p>
-          </span>
-
-          <span>Carhub 2024 
-            <br />
-            All Rights Reserved © About</span>
+    <div className="footer">
+      <div className="container">
+        <div className="col col-1">
+          <h1 className="logo-text"> CarHub</h1>
         </div>
-        <div className="main-link-section">
-          <ul>
-            <li>About</li>
-            <li>How its works</li>
-            <li>Featured</li>
-            <li>Partnership</li>
-            <li>Business Relation</li>
-          </ul>
-          <ul>
-            <li>Company</li>
-            <li>Event</li>
-            <li>Blog</li>
-            <li>Podcast</li>
-            <li>Invite a Friend</li>
-          </ul>
-          <ul>
-            <li>Socials</li>
-            <li>Github</li>
-            <li>Twitter</li>
-            <li>LinkedIn</li>
-            <li>Instagram</li>
-          </ul>
+        <div className="col">
+          <h5>Support</h5>
+          <span className="bar"></span>
+          <a href="/">Contact Us</a>
+          <a href="/">Chat</a>
+          <a href="/">Help Center</a>
+          <a href="/">FAQ</a>
         </div>
-      </section>
-      <section className="sub-footer-container-2">
-        <h6>@2023 CarHub. All rights reserved</h6>
-        <section className="policy-class">
-        <p>Privacy & Policy</p>
-        <p>Terms&Condition</p>
-        </section>
-      </section>
+        <div className="col">
+          <h5>Developers</h5>
+          <span className="bar"></span>
+          <a href="/">Cloud</a>
+          <a href="/">Commerce</a>
+          <a href="/">Pro</a>
+          <a href="/">API</a>
+        </div>
+        <div className="col">
+          <h5>Company</h5>
+          <span className="bar"></span>
+          <a href="/">About</a>
+          <a href="/">Information</a>
+          <a href="/">Legal</a>
+          <a href="/">Privacy</a>
+        </div>
+        <div className="col">
+          <h5>Socials</h5>
+          <span className="bar"></span>
+          <a href="/">
+            <FaFacebook className="icon" />Facebook
+          </a>
+          <a href="/">
+            <FaGithub className="icon" />Github
+          </a>
+          <a href="/">
+            <FaLinkedin className="icon" />Linkedin
+          </a>
+          <a href="/">
+            <FaTwitter className="icon" />Twitter
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
 
- export default Footer;
-
+export default Footer;

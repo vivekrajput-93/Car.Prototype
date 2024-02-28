@@ -5,10 +5,10 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import logo from "../assets/favicon.ico";
 import { useAuth } from "../context/auth";
 import { toast } from "react-toastify";
-import PersonIcon from '@mui/icons-material/Person';
+import PersonIcon from "@mui/icons-material/Person";
 
 const Navbar = () => {
-  const [auth, setAuth] = useAuth()
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
   const [click, setClick] = useState(false);
@@ -23,9 +23,7 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-
   const handleLogout = () => {
-    
     setAuth({
       ...auth,
       user: null,
@@ -33,12 +31,11 @@ const Navbar = () => {
     });
     localStorage.removeItem("auth");
     toast.success("Logout successfully", {
-      position : "top-center"
+      position: "top-center",
     });
   };
 
-  console.log(auth.user)
-
+  console.log(auth.user);
 
   return (
     <div className="main-container">
@@ -50,40 +47,61 @@ const Navbar = () => {
       </div>
       <ul className={click ? "active" : "navbar-container"}>
         <li>
-          <Link to="/" onClick={handleLinkClick}>Home</Link>
+          <Link to="/" onClick={handleLinkClick}>
+            Home
+          </Link>
         </li>
         <li>
-        <Link to="/about" onClick={handleLinkClick}>About</Link>
+          <Link to="/about" onClick={handleLinkClick}>
+            About
+          </Link>
         </li>
         <li>
-        <Link to="/vehicle" onClick={handleLinkClick}>Vehicle Fleet</Link>
+          <Link to="/vehicle" onClick={handleLinkClick}>
+            Vehicle Fleet
+          </Link>
         </li>
         <li>
-        <Link to="/team" onClick={handleLinkClick}>Our Team</Link>
+          <Link to="/team" onClick={handleLinkClick}>
+            Our Team
+          </Link>
         </li>
         <li>
-        <Link to="/contact" onClick={handleLinkClick}>Contact</Link>
+          <Link to="/contact" onClick={handleLinkClick}>
+            Contact
+          </Link>
         </li>
       </ul>
-        {!auth.user ? (
-                <div className="auth-container">
-                <Link to="/login" className="login">Login</Link>
-                <Link to="/register" className="register">Register</Link>
-              </div> 
-        ) : (
-          <div className="drop-container">
-          <button onClick={toggleDropdown} className="drop-btn">{auth?.user?.username}</button>
+      {!auth.user ? (
+        <div className="auth-container">
+          <Link to="/login" className="login">
+            Login
+          </Link>
+          <Link to="/register" className="register">
+            Register
+          </Link>
+        </div>
+      ) : (
+        <div className="drop-container">
+          <button onClick={toggleDropdown} className="drop-btn">
+            <PersonIcon className="person" />
+            {auth?.user?.username}
+          </button>
           {isOpen && (
             <div className="auth-contain">
               <div onClick={handleLogout}>Logout</div>
               <div>dashboard</div>
             </div>
           )}
-          </div>
-        )}
-      <div className="hamburger" onClick={handleClick}>
-          {click ? <FaTimes size={20} style={{ color: "#333" }} /> : <FaBars size={20} style={{ color: "#333" }} />}
         </div>
+      )}
+      <div className="hamburger" onClick={handleClick}>
+        {click ? (
+          <FaTimes size={20} style={{ color: "var(--main-color)" }} />
+        ) : (
+          <FaBars size={20} style={{ color: "var(--main-color)" }} />
+        )}
+      </div>
     </div>
   );
 };
