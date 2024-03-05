@@ -107,6 +107,24 @@ body {
 }
 
 
+/* Plan section */
+
+.plan-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    align-items: center;
+}
+
+
+.plan-section div > img {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+}
+
+
+
 
 
 @media screen and (max-width:1000px) {
