@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo.png"
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -11,10 +12,10 @@ function Navbar() {
   const handleLinkClick = () => setClick(false);
 
   return (
-    <div className="w-full h-14 sticky top-0 left-0 z-10  ">
+    <div className="w-full h-[80px] absolute top-0 left-0 z-50 ">
       <div className="flex justify-between items-center px-10 h-full">
           <img 
-          src='./assets/logo.svg'
+          src={logo}
           alt='logo'
           width={118}
           height={18}
@@ -42,7 +43,7 @@ function Navbar() {
           </li>
         </ul>
         <div className="btn-group">
-          <button className="border py-1 px-3 rounded-full font-medium  max-[768px]:hidden">Regsiter</button>
+          <button className="border py-1 px-3 rounded-full font-medium text-white   max-[768px]:hidden">Regsiter</button>
         </div>
         <div className="hidden cursor-pointer max-[768px]:flex relative left-[1.5rem]  " onClick={handleClick}>
           {click ? <RxCross1 size={20} style={{ color: "#333" }} /> : <RxHamburgerMenu size={20} style={{ color: "#333" }} />}
