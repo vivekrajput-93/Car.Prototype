@@ -11,6 +11,27 @@
   box-sizing: border-box;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #446cfc; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #5074fc;
+}
+
 
 @media screen and (max-width:1026px) {
   .hamburger {
@@ -84,7 +105,9 @@
 
 
 
-
+.car-details button {
+  @apply  w-[200px] py-2 text-center bg-neutral-100 max-[768px]:w-full focus:bg-blue-600 focus:text-white
+}
 
 
 
