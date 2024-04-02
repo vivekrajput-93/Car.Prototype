@@ -15,9 +15,9 @@ const Accordion = () => {
       {data && data.length ? (
         <div className="w-[900px] h-[max-content] px-4 py-5  flex flex-col justify-center ">
           {data.map((list) => (
-            <div key={list.id}>
+            <div key={list.id}  >
               <div
-                className="px-5 flex border-b py-5 justify-between  text-black bg-white shadow-lg  cursor-pointer transition-all duration-300"
+                className=" px-5 flex border-b py-5 justify-between  text-black bg-white shadow-lg  cursor-pointer transition-all duration-100"
                 onClick={() => handleAccordion(list.id)}
               >
                 <h3 className="font-bold  text-lg ">{list.question}</h3>

@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <div className="w-full h-[100vh] flex">
       <div className="flex flex-col  gap-y-5 px-[4rem] h-full justify-center  max-[460px]:w-screen">
-        <h3 className="font-bold text-2xl  max-[768px]:text-center max-[460px]:w-auto">Plan your trip now</h3>
+        <h3 className="font-bold text-2xl ml-[.5rem]  max-[768px]:text-center max-[460px]:w-auto">Plan your trip now</h3>
         <span className="text-[3rem] w-full font-bold max-[768px]:text-center max-[460px]:text-[2.1rem] ">
           Save <span className="text-blue-700">big</span> with our car rental
         </span>

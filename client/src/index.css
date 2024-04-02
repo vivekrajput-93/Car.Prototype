@@ -137,3 +137,8 @@
 .person-card h3 {
   @apply font-bold text-lg
 }
+
+
+.first:nth-child(1) {
+  @apply bg-green-500 
+}

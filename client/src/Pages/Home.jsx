@@ -9,6 +9,9 @@ import comma from "../assets/comma.png";
 import toji from "../assets/toji.jpeg";
 import nanami from "../assets/nanami.jpeg";
 import Accordion from "../components/Acordion";
+import apple from "../assets/apple.png";
+import google from "../assets/google.png";
+import copy from "../assets/copy.png"
 
 const Home = () => {
   return (
@@ -113,6 +116,21 @@ const Home = () => {
         </div>
 
         <Accordion />
+
+
+        <div className="flex gap-x-2 justify-center items-center bg-gray-100 h-[90vh] ">
+          <div className="w-1/2 flex flex-col gap-y-4 px-12 ml-4 mt-16  max-[768px]:w-full  max-[768px]:gap-y-12 ">
+            <h3 className="text-4xl font-extrabold leading-[3rem]">Download our app to get most out of it</h3>
+            <p className="text-[.8rem] text-neutral-600">Thrown shy denote ten ladies though ask saw. Or by to he going think order event music. Incommode so intention defective at convinced. Led income months itself and houses you.</p>
+            <div className="flex gap-x-5 ">
+              <img src={apple} alt="app-store " width={150} height={150} />
+              <img src={google} alt="app-store " width={150} height={150} />
+            </div>
+          </div>
+          <div className="relative top-[10rem] right-[-2rem] max-[768px]:hidden">
+            <img src={copy} alt="copy of a image which is confidiental" width={800} height={800} />
+          </div>
+        </div>
       </div>
 
     </div>
