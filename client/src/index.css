@@ -114,7 +114,26 @@
 
 
 
+/* Choose us section */ 
 
 
+.card {
+  @apply w-[500px] shadow-lg bg-white h-[300px] flex flex-col gap-y-6 px-12 py-14 max-[576px]:w-full max-[576px]:h-full 
+}
+
+.card p {
+  @apply text-[1.2rem] font-bold
+}
+
+.sub-card {
+  @apply flex justify-between
+}
 
 
+.person-card {
+  @apply flex justify-center items-center gap-x-5
+}
+
+.person-card h3 {
+  @apply font-bold text-lg
+}

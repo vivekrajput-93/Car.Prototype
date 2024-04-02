@@ -5,6 +5,10 @@ import support from "../assets/support.png";
 import drive from "../assets/drive.png";
 import CarDetails from "../components/CarDetails";
 import FindDetails from "../components/FindDetails";
+import comma from "../assets/comma.png";
+import toji from "../assets/toji.jpeg";
+import nanami from "../assets/nanami.jpeg";
+import Accordion from "../components/Acordion";
 
 const Home = () => {
   return (
@@ -68,6 +72,48 @@ const Home = () => {
       </div>
 
       <FindDetails />
+
+
+      <div className="mt-24 bg-gray-100 ">
+        <div className="w-1/2  block m-auto text-center pt-24 max-[768px]:w-full">
+          <h3 className="text-2xl font-bold mb-2">Reviewed by People</h3>
+          <p className="text-4xl font-extrabold mb-4">Client's Testimonials</p>
+          <p className="font-semibold text-neutral-500 mb-5  max-[768px]:px-5">Discover the positive impact we've made on the our clients by reading through their testimonials. Our clients have experienced our service and results, and they're eager to share their positive experiences with you.</p>
+        </div>
+
+        <div className="flex gap-x-10 mt-16 px-32 pb-24  max-[768px]:flex-col max-[768px]:px-6 max-[768px]:gap-y-6">
+          <div className="card">
+            <p>"We rented car from this website and had an amazing work. The booking was easy and the rental rates were affordable. "</p>
+            <div className="sub-card">
+              <div className="person-card">
+                <img src={toji} alt="person" width={70} height={70} className="rounded-full object-contain" />
+                <h3>Toji</h3>
+              </div>
+              <img src={comma} alt="" width={50} height={50} className="object-contain" />
+            </div>
+          </div>
+          <div className="card">
+            <p>"The car was in great condition and made our trip even better. Highly recommend for this car rental website!"</p>
+            <div className="sub-card">
+              <div className="person-card">
+                <img src={nanami} alt="person" width={70} height={70} className="rounded-full object-contain" />
+                <h3>Nanami</h3>
+              </div>
+              <img src={comma} alt="" width={50} height={50} className="object-contain" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+      <div className="w-1/2  block m-auto text-center pt-24 max-[768px]:w-full">
+          <h3 className="text-2xl font-bold mb-2">FAQ</h3>
+          <p className="text-4xl font-extrabold mb-4">Frequently Asked Questions</p>
+          <p className="font-semibold text-neutral-500 mb-5  max-[768px]:px-5">Frequently Asked Questions About the Car Rental Booking Process on Our Website: Answers to Common Concerns and Inquiries.</p>
+        </div>
+
+        <Accordion />
+      </div>
 
     </div>
   );
