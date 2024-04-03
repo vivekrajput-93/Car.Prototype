@@ -139,6 +139,18 @@
 }
 
 
-.first:nth-child(1) {
-  @apply bg-green-500 
-}
+ /* Go to Top button */
+
+ .icon {
+  animation:  goto 1.2s linear infinite alternate;
+ }
+
+ @keyframes goto {
+   0% {
+     transform:  translateY(-0.3rem);
+   }
+
+   100% {
+    transform:  translateY(.4rem);
+   }
+ }

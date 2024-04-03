@@ -127,7 +127,7 @@ const Home = () => {
               <img src={google} alt="app-store " width={150} height={150} />
             </div>
           </div>
-          <div className="relative top-[10rem] right-[-2rem] max-[768px]:hidden">
+          <div className="relative top-[10rem] max-[768px]:hidden">
             <img src={copy} alt="copy of a image which is confidiental" width={800} height={800} />
           </div>
         </div>
