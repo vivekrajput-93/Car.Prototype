@@ -154,3 +154,21 @@
     transform:  translateY(.4rem);
    }
  }
+
+
+ /* Authentication section  */
+
+ .input-container div {
+    @apply flex items-center gap-y-5 border-b  gap-x-4 mb-4 pb-2
+ }
+
+ .input-container div input {
+  @apply outline-none font-medium
+ }
+
+ .input-container  span {
+  @apply font-bold text-3xl relative bottom-5
+ }
+
+
+ 
