@@ -11,7 +11,9 @@ class AuthService {
 
   async create(data) {
     try {
-      const existingUser = await this.userRepository.findBy({ email: data.email });
+      const existingUser = await this.userRepository.create({
+        email: data.email,
+      });
 
       if (existingUser) {
         return {
@@ -34,7 +36,6 @@ class AuthService {
         data: newUser,
         error: {},
       };
-
     } catch (error) {
       console.log(error);
       return {
@@ -46,9 +47,9 @@ class AuthService {
     }
   }
 
-  async signIn(data) {
+  async signIn(email, plainPassword) {
     try {
-      const user = await this.getUserByEmail(data.email);
+      const user = await this.userRepository.getUserByEmail(email);
 
       if (!user) {
         return {
@@ -57,7 +58,7 @@ class AuthService {
         };
       }
 
-      const passwordMatch = await comparePassword(data.password, user.password);
+      const passwordMatch = await comparePassword(plainPassword, user.password);
 
       if (!passwordMatch) {
         return {
@@ -66,18 +67,15 @@ class AuthService {
         };
       }
 
-      const token = await this.createToken({ _id: user._id });
+      const token = await this.createToken({ email: user.email, id: user.id });
 
       return {
         success: true,
         message: "Successfully logged in!",
-         response : { 
-          username : user.username,
-          email : user.email,
-           token },
+        token,
+        user,
         error: {},
       };
-
     } catch (error) {
       console.error("Error in signIn method:", error);
       return {
@@ -121,15 +119,8 @@ class AuthService {
     }
   }
 
-  async getUserByEmail(email) {
-    try {
-      const user = await this.userRepository.findBy({ email });
-      return user;
-    } catch (error) {
-      console.log("Something went wrong at service layer");
-      throw error;
-    }
-  }
+
+
 }
 
 module.exports = AuthService;

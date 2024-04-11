@@ -5,11 +5,13 @@ import Footer from "./components/Footer";
 import GotoTop from "./components/GotoTop";
 import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <div className="App">
-      
+      <ToastContainer />
       <BrowserRouter>
         <Navbar />
         <Routes>

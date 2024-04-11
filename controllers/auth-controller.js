@@ -43,29 +43,39 @@ const create = async (req, res) => {
     }
 };
 
-const signIn = async(req, res) => {
+const signIn = async (req, res) => {
     try {
-
-        const user = await userService.signIn( {
+        const data = await userService.signIn({
             email: req.body.email,
-            password : req.body.password
-        })
+            password: req.body.password
+        });
+
+        if (!data.success) {
+            return res.status(200).send({
+                success: false,
+                message: data.message
+            });
+        }
+
+        // Return username and password to the frontend
         return res.status(200).send({
-            success : true,
-            message : "Successfully logined !",
-            user : user.response,
-            err : {},
-        })
+            success: true,
+            message: "Successfully logged in!",
+            token :  data.token,
+            user : data.user,
+            err: {},
+        });
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            success : false,
-            message : "Unable to login , please try again",
-            data : {},
-            err : error
-        })
+            success: false,
+            message: "Unable to login, please try again",
+            data: {},
+            err: error
+        });
     }
-}
+};
+
 
 module.exports = {
     create,

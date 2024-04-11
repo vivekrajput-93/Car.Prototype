@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { useAuth } from "../context/auth";
 
 function Navbar() {
   const [click, setClick] = useState(false);
+  const [auth, setAuth] = useAuth();
+
+  console.log(auth.user)
 
   const handleClick = () => setClick(!click);
 
@@ -51,11 +55,19 @@ function Navbar() {
           </li>
         </ul>
         <div className="btn-group">
-          <Link to="/register">
-            <button className="border py-1 px-3 rounded-full font-medium bg-white text-blue-600 hover:bg-transparent hover:text-white   max-[768px]:hidden">
-              Regsiter
-            </button>
-          </Link>
+          {!auth?.user ? (
+            <Link to="/register">
+              <button className="border py-1 px-3 rounded-full font-medium bg-white text-blue-600 hover:bg-transparent hover:text-white   max-[768px]:hidden">
+                Register
+              </button>
+            </Link>
+          ) : (
+            <Link>
+              <button className="border py-1 px-3 rounded-full font-medium bg-white text-blue-600 hover:bg-transparent hover:text-white   max-[768px]:hidden">
+                Logout
+              </button>
+            </Link>
+          )}
         </div>
         <div
           className="hidden cursor-pointer max-[768px]:flex relative left-[1.5rem]  "
