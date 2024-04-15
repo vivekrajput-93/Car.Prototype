@@ -45,25 +45,11 @@ const create = async (req, res) => {
 
 const signIn = async (req, res) => {
     try {
-        const data = await userService.signIn({
-            email: req.body.email,
-            password: req.body.password
-        });
-
-        if (!data.success) {
-            return res.status(200).send({
-                success: false,
-                message: data.message
-            });
-        }
-
-        // Return username and password to the frontend
-        return res.status(200).send({
-            success: true,
-            message: "Successfully logged in!",
-            token :  data.token,
-            user : data.user,
-            err: {},
+        const data = await userService.signIn(req.body.email, req.body.password);
+        return res.status(200).json({
+            status: true,
+            token: data.token,
+            user: data.user,
         });
     } catch (error) {
         console.log(error);
