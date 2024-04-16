@@ -20,6 +20,7 @@ const Login = () => {
     try {
         const  res = await axios.post("http://localhost:5001/api/v1/auth/login", { email, password,})
         if(res && res.data.success) {
+          // setAuth({...auth})
           toast.success(res.data.message)
           localStorage.setItem('auth', JSON.stringify(res.data))
           navigate(location.state || "/",);

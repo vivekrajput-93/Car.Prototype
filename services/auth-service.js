@@ -1,5 +1,5 @@
 const { JWT_SECRET } = require("../config/ServerConfig");
-const { comparePassword, hashPassword } = require("../helper/authHelper");
+const { comparePassword } = require("../helper/authHelper");
 const User = require("../models/userModel");
 const UserRepository = require("../repository/auth-repository");
 const JWT = require("jsonwebtoken");
@@ -19,44 +19,30 @@ class AuthService {
     }
   }
 
-
-
-
-
-  async signIn(email, plainPassword) {
+  async signIn(data) {
     try {
-      const user = await this.userRepository.getUserByEmail(email);
+      const user = await this.userRepository.getUserByEmail(data.email);
       if (!user) {
-        throw { error: "User not found " };
+        throw { error: "User not found !" };
       }
 
-      console.log(user);
-
-      const passwordMatch = comparePassword(plainPassword, user.password);
-
-      if (!passwordMatch) {
-        throw { error: "Password not matched!" };
+      const matchPassword = comparePassword(data.password, user.password);
+      if (!matchPassword) {
+        throw { error: "Password was not found !" };
       }
-
-      const token = this.createToken({ email: user.email, id: user.id });
+      const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
+        expiresIn: "7d",
+      });
       return {
+        success: true,
         token,
-        user,
+        user
       };
     } catch (error) {
-      console.error("Error in signIn method:", error);
-      return {
-        success: false,
-        message: "Unable to login, please try again",
-        data: {},
-        error,
-      };
+      console.log("Something went wrong !");
+      throw error;
     }
   }
-
-
-
-
 
   async destroy(userId) {
     try {
@@ -68,11 +54,6 @@ class AuthService {
     }
   }
 
-
-
-
-
-
   async get(userId) {
     try {
       const user = await this.userRepository.get(userId);
@@ -82,9 +63,6 @@ class AuthService {
       throw error;
     }
   }
-
-
-
 
   async createToken(userId) {
     try {
