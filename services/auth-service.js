@@ -19,6 +19,8 @@ class AuthService {
     }
   }
 
+
+
   async signIn(data) {
     try {
       const user = await this.userRepository.getUserByEmail(data.email);
@@ -30,16 +32,19 @@ class AuthService {
       if (!matchPassword) {
         throw { error: "Password was not found !" };
       }
-      const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
+
+      const token = await JWT.sign({ _id: user._id }, JWT_SECRET, {
+        // Use JWT_SECRET directly
         expiresIn: "7d",
       });
+
       return {
         success: true,
         token,
-        user
+        user,
       };
     } catch (error) {
-      console.log("Something went wrong !");
+      console.log("Something went wrong vivek !");
       throw error;
     }
   }
@@ -60,7 +65,7 @@ class AuthService {
       return user;
     } catch (error) {
       console.log("Something went wrong with service layer");
-      throw error;
+      throw error; // Return the error to propagate it to the caller
     }
   }
 

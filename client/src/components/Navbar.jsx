@@ -3,6 +3,7 @@ import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useAuth } from "../context/auth";
+import { toast } from "react-toastify";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -13,6 +14,16 @@ function Navbar() {
   const handleClick = () => setClick(!click);
 
   const handleLinkClick = () => setClick(false);
+
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: " ",
+    });
+    localStorage.removeItem("auth");
+    toast.success("Logout successfully");
+  };
 
   return (
     <div className="w-full h-[80px] absolute top-0 left-0 z-50 ">
@@ -63,7 +74,7 @@ function Navbar() {
             </Link>
           ) : (
             <Link>
-              <button className="border py-1 px-3 rounded-full font-medium bg-white text-blue-600 hover:bg-transparent hover:text-white   max-[768px]:hidden">
+              <button onClick={handleLogout} className="border py-1 px-3 rounded-full font-medium bg-white text-blue-600 hover:bg-transparent hover:text-white   max-[768px]:hidden">
                 Logout
               </button>
             </Link>
