@@ -1,6 +1,5 @@
-const { JWT_SECRET } = require("../config/ServerConfig");
+
 const { comparePassword } = require("../helper/authHelper");
-const User = require("../models/userModel");
 const UserRepository = require("../repository/auth-repository");
 const JWT = require("jsonwebtoken");
 
@@ -20,29 +19,33 @@ class AuthService {
   }
 
 
+  async getUserByEmail(email) {
+    try {
+      const user = this.userRepository.findBy({email});
+      return user;
+    } catch (error) {
+      
+    }
+  }
+
+
 
   async signIn(data) {
     try {
-      const user = await this.userRepository.getUserByEmail(data.email);
+      const user = await this.getUserByEmail(data.email);
       if (!user) {
         throw { error: "User not found !" };
       }
 
-      const matchPassword = comparePassword(data.password, user.password);
-      if (!matchPassword) {
-        throw { error: "Password was not found !" };
+      const match = await comparePassword(data.password, user.password);
+      if (!match) {
+        throw { message : "Invalid Password"}
       }
 
-      const token = await JWT.sign({ _id: user._id }, JWT_SECRET, {
-        // Use JWT_SECRET directly
-        expiresIn: "7d",
-      });
-
+      const token = user.genJWT();
       return {
-        success: true,
-        token,
-        user,
-      };
+        user, token
+      }
     } catch (error) {
       console.log("Something went wrong vivek !");
       throw error;
@@ -69,17 +72,7 @@ class AuthService {
     }
   }
 
-  async createToken(userId) {
-    try {
-      const token = JWT.sign({ _id: userId }, JWT_SECRET, {
-        expiresIn: "7d",
-      });
-      return token;
-    } catch (error) {
-      console.log("Something went wrong at service layer");
-      throw error;
-    }
-  }
+
 }
 
 module.exports = AuthService;

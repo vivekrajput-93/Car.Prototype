@@ -22,7 +22,7 @@ const Register = () => {
       else if (password.length < 6) {
         toast.error("Password must be at least 6 characters long!")
       }
-      const res = await axios.post("http://localhost:5001/api/v1/auth/register", {
+      const res = await axios.post("http://localhost:5002/api/v1/auth/register", {
         username,
         email,
         password,

@@ -18,7 +18,7 @@ const Login = () => {
   const handleLogin = async(e) => {
     e.preventDefault();
     try {
-        const  res = await axios.post("http://localhost:5001/api/v1/auth/login", { email, password,})
+        const  res = await axios.post("http://localhost:5002/api/v1/auth/login", { email, password,})
         if(res && res.data.success) {
           setAuth({...auth})
           toast.success(res.data.message)

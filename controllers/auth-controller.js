@@ -43,25 +43,27 @@ const create = async (req, res) => {
   }
 };
 
-const signIn = async (req, res) => {
+const login = async(req, res) => {
   try {
-    const data = await userService.signIn(req.body);
-    return res.status(200).json({
-      success: true,
-      user: data,
-      err: {},
-    });
+      const token = await userService.signIn(req.body)
+      return res.status(200).json({
+          success : true,
+          message : "Successfully logined in",
+          data : token,
+          err : {}
+      })
   } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: "Unable to login",
-      data: {},
-      err: error,
-    });
+      console.log(error);
+      return res.status(500).json({
+          success : false,
+          message : "Unable to login",
+          data : {},
+          err : error
+      })
   }
-};
+}
 
 module.exports = {
   create,
-  signIn,
+  login,
 };

@@ -1,8 +1,12 @@
 const  User  = require("../models/userModel");
+const CrudRepository = require("./crud-repository");
 
 
 
-class UserRepository {
+class UserRepository extends CrudRepository {
+    constructor() {
+        super(User);
+    }
 
     async create(data) {
         try {
@@ -36,10 +40,10 @@ class UserRepository {
         }
     }
     
-    async getUserByEmail(email) {
+    async findBy(data) {
         try {
-            const user = await User.findOne({ email });
-            return user; // Return the user data
+            const user = await User.findOne(data);
+            return user; 
         } catch (error) {
             console.log("Something went wrong at Repo layer");
             throw error;
