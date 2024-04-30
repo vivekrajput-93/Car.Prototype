@@ -49,7 +49,7 @@ const login = async(req, res) => {
       return res.status(200).json({
           success : true,
           message : "Successfully logined in",
-          data : token,
+          user : token,
           err : {}
       })
   } catch (error) {

@@ -34,7 +34,7 @@ class AuthService {
     try {
       const user = await this.getUserByEmail(data.email);
       if (!user) {
-        throw { error: "User not found !" };
+        console.log("User is not registered !")
       }
 
       const match = await comparePassword(data.password, user.password);
@@ -44,7 +44,9 @@ class AuthService {
 
       const token = user.genJWT();
       return {
-        user, token
+        token,
+        name : user.username,
+        email : user.email
       }
     } catch (error) {
       console.log("Something went wrong vivek !");

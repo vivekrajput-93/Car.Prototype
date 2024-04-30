@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { RxCross1, RxHamburgerMenu } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useAuth } from "../context/auth";
 import { toast } from "react-toastify";
@@ -9,17 +9,14 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const [auth, setAuth] = useAuth();
 
-  console.log(auth.user)
-
   const handleClick = () => setClick(!click);
-
   const handleLinkClick = () => setClick(false);
 
-  const handleLogout = () => {
+  const handleLogout = (event) => {
+    event.preventDefault();
     setAuth({
-      ...auth,
       user: null,
-      token: " ",
+      token: "",
     });
     localStorage.removeItem("auth");
     toast.success("Logout successfully");
@@ -41,7 +38,7 @@ function Navbar() {
           className={
             click
               ? "active"
-              : "max-[768px]:hidden max-[1290px]:flex gap-6 font-bold "
+              : "max-[768px]:hidden max-[1290px]:flex gap-6 font-bold"
           }
         >
           <li>
@@ -66,16 +63,42 @@ function Navbar() {
           </li>
         </ul>
         <div className="btn-group">
-          {!auth?.user ? (
+          {auth.user ? (
+            <li className="nav-item dropdown">
+              <NavLink
+                className="nav-link dropdown-toggle"
+                to="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {auth.user.name}
+              </NavLink>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink
+                    to={`/dashboard/${auth.user.role === 1 ? "admin" : "user"}`}
+                    className="dropdown-item"
+                    onClick={handleLinkClick}
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/login"
+                    className="dropdown-item"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
+          ) : (
             <Link to="/register">
               <button className="border py-1 px-3 rounded-full font-medium bg-white text-blue-600 hover:bg-transparent hover:text-white   max-[768px]:hidden">
                 Register
-              </button>
-            </Link>
-          ) : (
-            <Link>
-              <button onClick={handleLogout} className="border py-1 px-3 rounded-full font-medium bg-white text-blue-600 hover:bg-transparent hover:text-white   max-[768px]:hidden">
-                Logout
               </button>
             </Link>
           )}
