@@ -5,9 +5,11 @@ import logo from "../assets/logo.png";
 import { useAuth } from "../context/auth";
 import { toast } from "react-toastify";
 
+
 function Navbar() {
   const [click, setClick] = useState(false);
   const [auth, setAuth] = useAuth();
+  const [isOpen, setIsopen] = useState(false);
 
   const handleClick = () => setClick(!click);
   const handleLinkClick = () => setClick(false);
@@ -64,37 +66,24 @@ function Navbar() {
         </ul>
         <div className="btn-group">
           {auth.user ? (
-            <li className="nav-item dropdown">
-              <NavLink
-                className="nav-link dropdown-toggle"
-                to="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+            <div className=" max-[768px]:hidden">
+              <h1
+                className="font-semibold cursor-pointer  border py-1  px-4 rounded-2xl "
+                onClick={() => setIsopen((prev) => !prev)}
               >
                 {auth.user.name}
-              </NavLink>
-              <ul className="dropdown-menu">
-                <li>
-                  <NavLink
-                    to={`/dashboard/${auth.user.role === 1 ? "admin" : "user"}`}
-                    className="dropdown-item"
-                    onClick={handleLinkClick}
-                  >
-                    Dashboard
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/login"
-                    className="dropdown-item"
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
+              </h1>
+              {isOpen && (
+                <div className="flex flex-col login-dropdown">
+                  <ul className="flex flex-col gap-4 ">
+                    <li>
+                      <button onClick={handleLogout}>Logout</button>
+                    </li>
+                    <li>Dashboard</li>
+                  </ul>
+                </div>
+              )}
+            </div>
           ) : (
             <Link to="/register">
               <button className="border py-1 px-3 rounded-full font-medium bg-white text-blue-600 hover:bg-transparent hover:text-white   max-[768px]:hidden">

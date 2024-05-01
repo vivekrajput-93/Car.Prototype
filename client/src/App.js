@@ -7,13 +7,19 @@ import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from "react";
 
 function App() {
+  const [auth, setAuth] = useState({
+    user: null,
+    token: ""
+  });
+
   return (
     <div className="App">
       <ToastContainer />
       <BrowserRouter>
-        <Navbar />
+        <Navbar auth={auth} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />

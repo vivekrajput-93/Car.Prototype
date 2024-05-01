@@ -177,7 +177,18 @@
 
 /* Logout section */ 
 
-li {
-  list-style-type: none;
+.login-dropdown {
+  position: absolute;
+  top: 3.8rem;
+  right: 1.5rem;
+  width: 120px;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: white;
+
+}
+
+.login-dropdown li {
+  @apply cursor-pointer w-full text-center 
 }
 
