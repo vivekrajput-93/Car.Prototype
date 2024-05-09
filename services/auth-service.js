@@ -74,6 +74,15 @@ class AuthService {
     }
   }
 
+  async update(userId) {
+    try {
+      const user = await this.userRepository.update(userId)
+    } catch (error) {
+      console.log("Somethin went wrong in service layer");
+      throw error;
+    }
+  }
+
 
 }
 

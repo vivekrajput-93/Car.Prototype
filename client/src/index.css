@@ -192,3 +192,6 @@
   @apply cursor-pointer w-full text-center 
 }
 
+.forgot {
+  @apply text-base font-normal
+}

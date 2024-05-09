@@ -71,7 +71,7 @@ const Login = () => {
             />
           </div>
           <section className="flex gap-x-3 items-center mb-4">
-            <Link to="/forgot">
+            <Link to="/forgot-password">
               <h2 className="font-medium underline text-blue-600">
                 Forgot Password
               </h2>

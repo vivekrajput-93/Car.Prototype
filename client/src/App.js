@@ -8,6 +8,7 @@ import Login from "./pages/Auth/Login";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
+import ForgotPassword from "./components/Paasword/ForgotPassword";
 
 function App() {
   const [auth, setAuth] = useState({
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element= { <ForgotPassword /> } />
         </Routes>
         <GotoTop />
         <Footer />
