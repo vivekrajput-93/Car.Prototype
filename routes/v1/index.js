@@ -8,7 +8,7 @@ router.post("/auth/register", validateAuth, create);
 
 router.post("/auth/login", validateAuth, login);
 
-router.post("/reset-password/:id/token", resetPassword);
+router.post("/auth/reset-password/:id/token", resetPassword);
 router.post("/auth/forgot-password", forgotPassword)
 
 module.exports = router;

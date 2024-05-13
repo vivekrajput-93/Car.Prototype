@@ -3,6 +3,8 @@ const UserService = require("../services/auth-service");
 const { hashPassword } = require("../helper/authHelper");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET, PASSWORD } = require("../config/ServerConfig");
+const nodemailer = require("nodemailer");
+
 
 const userService = new UserService();
 
@@ -67,10 +69,10 @@ const login = async (req, res) => {
 const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
-    const user = await userService.getUserByEmail({ email });
+    const user = await User.findOne({email})
 
     if (!user) {
-      return res.stauts(400).json({ message: "User not found !" });
+      return res.status(400).json({ message: "User not found !" });
     }
 
     const userToken = jwt.sign({ id: user._id }, JWT_SECRET, {
@@ -81,15 +83,17 @@ const forgotPassword = async (req, res) => {
       service: "gmail",
       auth: {
         user: "viveksinghraajputt@gmail.com",
-        pass: PASSWORD,
+        pass: "lfta ojwt xdmh uvms",
       },
     });
+
+    
 
     var mailOptions = {
       from: "viveksinghraajputt@gmail.com",
       to: user.email,
       subject: "Reset Password Link",
-      text: `http://localhost:3000/reset_password/${user._id}/${userToken}`,
+      text: `http://localhost:3000/reset-password/${user._id}/${userToken}`,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -105,6 +109,9 @@ const forgotPassword = async (req, res) => {
     console.log("Something went wrong at forgot password controllor");
   }
 };
+
+
+
 
 const resetPassword = (req, res) => {
   try {

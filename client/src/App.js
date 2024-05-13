@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
 import ForgotPassword from "./components/Paasword/ForgotPassword";
+import ResetPassword from "./components/Paasword/ResetPassword";
 
 function App() {
   const [auth, setAuth] = useState({
@@ -26,6 +27,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element= { <ForgotPassword /> } />
+          <Route path="/reset-password/:id/:token" element={<ResetPassword />}  />
         </Routes>
         <GotoTop />
         <Footer />

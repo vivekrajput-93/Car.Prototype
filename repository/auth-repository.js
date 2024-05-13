@@ -40,7 +40,7 @@ class UserRepository  {
     
     async findBy(email) {
         try {
-            const user = await User.findOne(email);
+            const user = await User.findOne({ email: email });
             return user; 
         } catch (error) {
             console.log("Something went wrong at Repo layer");
