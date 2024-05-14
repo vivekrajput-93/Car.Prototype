@@ -21,7 +21,7 @@ class AuthService {
 
   async getUserByEmail(email) {
     try {
-      const user = this.userRepository.findBy({email});
+      const user = this.userRepository.findBy(email);
       return user;
     } catch (error) {
       

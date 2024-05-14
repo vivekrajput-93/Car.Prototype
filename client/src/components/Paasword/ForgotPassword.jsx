@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { IoMdLock, IoMdMail } from "react-icons/io";
-import login from "../../assets/auth/login.jpeg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 

@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const { JWT_SECRET, PASSWORD } = require("../config/ServerConfig");
 const nodemailer = require("nodemailer");
 
-
 const userService = new UserService();
 
 const create = async (req, res) => {
@@ -69,7 +68,7 @@ const login = async (req, res) => {
 const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
-    const user = await User.findOne({email})
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(400).json({ message: "User not found !" });
@@ -86,8 +85,6 @@ const forgotPassword = async (req, res) => {
         pass: "lfta ojwt xdmh uvms",
       },
     });
-
-    
 
     var mailOptions = {
       from: "viveksinghraajputt@gmail.com",
@@ -110,25 +107,33 @@ const forgotPassword = async (req, res) => {
   }
 };
 
-
-
-
-const resetPassword = (req, res) => {
+const resetPassword = async (req, res) => {
   try {
     const { id, token } = req.params;
     const { password } = req.body;
 
+    console.log("Received ID:", id);
+    console.log("Received Token:", token);
+    console.log("Received Password:", password);
+
     jwt.verify(token, JWT_SECRET, async (err, decoded) => {
       if (err) {
+        console.error("Error with token:", err);
         return res.status(400).json({ Status: "Error with token" });
       } else {
         const hashedPassword = await bcrypt.hash(password, 10);
+        console.log("Hashed Password:", hashedPassword);
+
         await userService.update(id, { password: hashedPassword });
         return res.status(200).json({ Status: "Success" });
       }
     });
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error in resetPassword:", error);
+    return res.status(500).json({ Status: "Error", message: error.message });
+  }
 };
+
 
 module.exports = {
   create,
