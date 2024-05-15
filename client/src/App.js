@@ -10,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useState } from "react";
 import ForgotPassword from "./components/Paasword/ForgotPassword";
 import ResetPassword from "./components/Paasword/ResetPassword";
+import AdminRoute from "./Routes/AdminRoute";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 
 function App() {
   const [auth, setAuth] = useState({
@@ -28,6 +30,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element= { <ForgotPassword /> } />
           <Route path="/reset-password/:id/:token" element={<ResetPassword />}  />
+          <Route path="/dashboard" element={<AdminRoute />} >
+            <Route path="admin" element={<AdminDashboard />} />
+          </Route>
         </Routes>
         <GotoTop />
         <Footer />

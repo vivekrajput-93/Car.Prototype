@@ -5,7 +5,6 @@ import logo from "../assets/logo.png";
 import { useAuth } from "../context/auth";
 import { toast } from "react-toastify";
 
-
 function Navbar() {
   const [click, setClick] = useState(false);
   const [auth, setAuth] = useAuth();
@@ -79,7 +78,15 @@ function Navbar() {
                     <li>
                       <button onClick={handleLogout}>Logout</button>
                     </li>
-                    <li>Dashboard</li>
+                    <li>
+                      <NavLink
+                        to={`/dashboard/${
+                          auth.user.role === 1 ? "admin" : "user"
+                        }`}
+                      >
+                        Dashbaord
+                      </NavLink>
+                    </li>
                   </ul>
                 </div>
               )}

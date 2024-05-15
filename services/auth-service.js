@@ -46,7 +46,8 @@ class AuthService {
       return {
         token,
         name : user.username,
-        email : user.email
+        email : user.email,
+        role : user.role
       }
     } catch (error) {
       console.log("Something went wrong vivek !");
