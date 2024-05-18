@@ -134,10 +134,21 @@ const resetPassword = async (req, res) => {
   }
 };
 
+// test api
+const testController = (req, res) => {
+  try {
+    res.send("Protected Routes");
+  } catch (error) {
+    console.log(error);
+    res.send({ error });
+  }
+};
+
 
 module.exports = {
   create,
   login,
   forgotPassword,
   resetPassword,
+  testController
 };
