@@ -7,19 +7,14 @@ import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
 import ForgotPassword from "./components/Paasword/ForgotPassword";
 import ResetPassword from "./components/Paasword/ResetPassword";
-import AdminRoute from "./Routes/AdminRoute";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
-import Private from "./Routes/Private";
 import Dashboard from "./pages/User/Dashboard";
+import { useAuth } from "./context/auth";
 
 function App() {
-  const [auth, setAuth] = useState({
-    user: null,
-    token: "",
-  });
+  const  [auth, setAuth] = useAuth()
 
   return (
     <div className="App">
@@ -29,7 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Private />}>
+          <Route path="/dashboard" element={auth.user?.role === 1 ? <AdminDashboard /> : <Dashboard /> }>
             <Route path="user" element={<Dashboard />} />
           </Route>
           <Route path="/login" element={<Login />} />
@@ -38,9 +33,6 @@ function App() {
             path="/reset-password/:id/:token"
             element={<ResetPassword />}
           />
-          <Route path="/dashboard" element={<AdminRoute />}>
-            <Route path="admin" element={<AdminDashboard />} />
-          </Route>
         </Routes>
         <GotoTop />
         <Footer />

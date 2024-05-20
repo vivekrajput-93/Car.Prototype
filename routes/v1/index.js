@@ -13,18 +13,7 @@ router.post("/auth/forgot-password", forgotPassword)
 
 
 
-router.get("/auth/test", requiredSignIn, isAdmin, testController);
 
-
-router.get("/auth/user-auth", requiredSignIn, (req, res) => {
-    res.status(200).send({ ok : true})
-})
-
-
-// ADMIN Dashboard Route
-router.get("/auth/admin-auth", requiredSignIn, isAdmin, (req, res) => {
-    res.status(200).send({ ok : true});
-})
 
 
 

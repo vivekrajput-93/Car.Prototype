@@ -79,13 +79,7 @@ function Navbar() {
                       <button onClick={handleLogout}>Logout</button>
                     </li>
                     <li>
-                      <NavLink
-                        to={`/dashboard/${
-                          auth.user.role === 1 ? "admin" : "user"
-                        }`}
-                      >
-                        Dashbaord
-                      </NavLink>
+                      <NavLink to={"/dashboard"}>Dashbaord</NavLink>
                     </li>
                   </ul>
                 </div>
