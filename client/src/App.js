@@ -12,6 +12,7 @@ import ResetPassword from "./components/Paasword/ResetPassword";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Dashboard from "./pages/User/Dashboard";
 import { useAuth } from "./context/auth";
+import CreateCategory from "./pages/Admin/CreateCategory";
 
 function App() {
   const  [auth, setAuth] = useAuth()
@@ -24,9 +25,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={auth.user?.role === 1 ? <AdminDashboard /> : <Dashboard /> }>
-            <Route path="user" element={<Dashboard />} />
-          </Route>
+          <Route path="/dashboard" element={auth.user?.role === 1 ? <AdminDashboard /> : <Dashboard /> } />
+          <Route path="/create-category" element={ <CreateCategory />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route

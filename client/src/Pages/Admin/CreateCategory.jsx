@@ -1,11 +1,7 @@
 import React from 'react'
-import { useAuth } from '../../context/auth'
 import AdminMenu from '../../components/Layouts/AdminMenu'
 
-const AdminDashboard = () => {
-
-    const[auth, setAuth] = useAuth()
-
+const CreateCategory = () => {
   return (
     <div className='mt-[80px] flex h-screen justify-evenly '>
       <div className='w-[300px] h-full'>
@@ -19,4 +15,4 @@ const AdminDashboard = () => {
   )
 }
 
-export default AdminDashboard
+export default CreateCategory
