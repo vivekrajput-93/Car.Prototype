@@ -1,7 +1,7 @@
 const express = require("express");
 const { create, login, resetPassword, forgotPassword, testController } = require("../../controllers/auth-controller");
 const { validateAuth, isAdmin, requiredSignIn } = require("../../middlewares/auth-middleware");
-const { createCategory } = require("../../controllers/category-controller");
+const { createCategory, updateCategory, getAllCategories, getCategory, deleteCategory } = require("../../controllers/category-controller");
 
 const router = express.Router();
 
@@ -16,7 +16,15 @@ router.post("/auth/forgot-password", forgotPassword)
 
 // categories routes
 
-router.post("/auth/create-category",  createCategory)
+router.post("/auth/create-category",  createCategory);
+
+router.put("/auth/update-category/:id", updateCategory);
+
+router.get("/auth/all-categories", getAllCategories);
+
+router.get("/auth/single-category/:slug", getCategory);
+
+router.delete("/auth/delete-category/:id", deleteCategory)
 
 
 
