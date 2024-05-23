@@ -82,7 +82,7 @@ const AdminMenu = () => {
           />
         </svg>
 
-        <span className="font-bold">{auth?.user?.name}</span>
+        <span className="font-bold capitalize">{auth?.user?.name}</span>
         
       </div>
     </div>
