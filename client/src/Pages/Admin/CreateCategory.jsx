@@ -89,7 +89,7 @@ const CreateCategory = () => {
   };
 
   return (
-    <div className="mt-[80px] flex h-screen justify-evenly">
+    <div className="mt-[120px] flex h-screen justify-evenly">
       <div className="w-[300px] h-full">
         <AdminMenu />
       </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { useAuth } from '../../context/auth'
 import AdminMenu from '../../components/Layouts/AdminMenu'
 
-const AdminDashboard = () => {
+const Product = () => {
 
     const[auth, setAuth] = useAuth()
 
@@ -13,10 +13,10 @@ const AdminDashboard = () => {
       </div>
 
       <div className='border w-2/3'>
-        hello
+        Product Display
       </div>
     </div>
   )
 }
 
-export default AdminDashboard
+export default Product

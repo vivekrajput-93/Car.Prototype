@@ -36,7 +36,7 @@ const AdminMenu = () => {
           </svg>
           Create Category
         </Link>
-        <Link>
+        <Link to="/create-product">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -51,7 +51,7 @@ const AdminMenu = () => {
           </svg>
           Create Vehicle
         </Link>
-        <Link>
+        <Link to="/products">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

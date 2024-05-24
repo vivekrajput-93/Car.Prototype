@@ -13,6 +13,8 @@ import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Dashboard from "./pages/User/Dashboard";
 import { useAuth } from "./context/auth";
 import CreateCategory from "./pages/Admin/CreateCategory";
+import CreateProduct from "./pages/Admin/CreateProduct";
+import Products from "./pages/Admin/Products";
 
 function App() {
   const  [auth, setAuth] = useAuth()
@@ -27,6 +29,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={auth.user?.role === 1 ? <AdminDashboard /> : <Dashboard /> } />
           <Route path="/create-category" element={ <CreateCategory />} />
+          <Route path="/create-product" element={<CreateProduct />} />
+          <Route path="/products" element={ <Products />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route
