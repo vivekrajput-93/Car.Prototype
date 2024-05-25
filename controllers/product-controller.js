@@ -66,6 +66,44 @@ const createProduct = async (req, res) => {
     });
   }
 };
+
+const getProduct = async (req, res) => {
+  try {
+    const product = await productService.getProduct();
+    return res.status(201).send({
+      success: true,
+      message: "All product get fetched!",
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "somethin went wrong at controller layer",
+      err: error,
+    });
+  }
+};
+
+
+const getSingleProduct = async(req, res) => {
+  try {
+    const product = await productService.getSingleProduct(req.params.slug);
+    return res.status(201).send({
+      success : true,
+      message : "Single product fetched !",
+      product
+    })
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success : false,
+      message : "somethin went wrong at controller layer"
+    })
+  }
+}
 module.exports = {
   createProduct,
+  getProduct,
+  getSingleProduct
 };

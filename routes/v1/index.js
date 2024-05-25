@@ -4,7 +4,7 @@ const { validateAuth, isAdmin, requiredSignIn } = require("../../middlewares/aut
 const { createCategory, updateCategory, getAllCategories, getCategory, deleteCategory } = require("../../controllers/category-controller");
 
 const formidable = require("express-formidable");
-const { createProduct } = require("../../controllers/product-controller");
+const { createProduct, getProduct, getSingleProduct } = require("../../controllers/product-controller");
 
 const router = express.Router();
 
@@ -31,6 +31,10 @@ router.delete("/auth/delete-category/:id", deleteCategory)
 
 // product routes
 router.post("/auth/create-product", formidable() , createProduct)
+
+router.post("/auth/get-product", getProduct);
+
+router.post("/auth/single-product/:slug", getSingleProduct)
 
 
 module.exports = router;
