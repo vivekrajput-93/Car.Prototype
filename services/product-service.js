@@ -35,6 +35,17 @@ class ProductService {
             console.log("somethin went wrong at service layer")
         }
     }
+
+
+    async getProductPhoto(productId) {
+        try {
+            const product = await this.productRepository.findById(productId);
+            return product
+        } catch (error) {
+            console.log(error);
+            console.log("something went wrong at service layer")
+        }
+    }
 }
 
 

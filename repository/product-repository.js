@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const productModel = require("../models/productModel");
 
 class ProductRepository {
@@ -37,6 +38,21 @@ class ProductRepository {
     } catch (error) {
       console.log(error);
       console.log("somethin went wrong at repo layer");
+    }
+  }
+
+
+  async findById(productId) {
+    try {
+      if(!productId || !mongoose.Types.ObjectId.isValid(productId)) {
+        throw new Error("Invalid Product Id")
+      }
+
+      const product = await productModel.findById(productId).select("photo");
+      return product
+    } catch (error) {
+      console.log(error);
+      console.log("something went wrong at repo layer")
     }
   }
 }

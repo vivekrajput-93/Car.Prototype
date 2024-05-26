@@ -1,6 +1,7 @@
 const { default: slugify } = require("slugify");
 const ProductService = require("../services/product-service");
 const fs = require("fs");
+const { default: mongoose } = require("mongoose");
 
 const productService = new ProductService();
 
@@ -88,11 +89,11 @@ const getProduct = async (req, res) => {
 
 const getSingleProduct = async(req, res) => {
   try {
-    const product = await productService.getSingleProduct(req.params.slug);
+    const products = await productService.getSingleProduct(req.params.slug);
     return res.status(201).send({
       success : true,
       message : "Single product fetched !",
-      product
+      products
     })
   } catch (error) {
     console.log(error);
@@ -102,8 +103,43 @@ const getSingleProduct = async(req, res) => {
     })
   }
 }
+
+
+ const getproductPhoto= async (req, res) => {
+  try {
+    const productId = req.params.pid;
+
+    if (!productId || !mongoose.Types.ObjectId.isValid(productId)) {
+      return res.status(400).send({
+        success: false,
+        message: "Invalid product ID",
+      });
+    }
+
+    const product = await productService.getProductPhoto(productId);
+    if (product && product.photo && product.photo.data) {
+      res.set("Content-type", product.photo.contentType);
+      return res.status(200).send(product.photo.data);
+    } else {
+      return res.status(404).send({
+        success: false,
+        message: "Product photo not found",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in getting the product photo",
+      error: error.message,
+    });
+  }
+};
+
+
 module.exports = {
   createProduct,
   getProduct,
-  getSingleProduct
+  getSingleProduct,
+  getproductPhoto
 };
