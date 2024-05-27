@@ -89,12 +89,12 @@ const CreateCategory = () => {
   };
 
   return (
-    <div className="mt-[120px] flex h-screen justify-evenly">
+    <div className="mt-[120px] flex h-fit justify-evenly">
       <div className="w-[300px] h-full">
         <AdminMenu />
       </div>
 
-      <div className="w-2/3">
+      <div className="w-2/3 h-fit mb-4">
         <h1 className="text-center font-bold text-xl mt-3">Manage Category</h1>
 
         <CategoryForm
