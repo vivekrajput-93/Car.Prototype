@@ -200,3 +200,6 @@
   @apply flex items-center gap-2 font-semibold cursor-pointer
 }
 
+.product-info div {
+  @apply flex flex-col  items-center
+}

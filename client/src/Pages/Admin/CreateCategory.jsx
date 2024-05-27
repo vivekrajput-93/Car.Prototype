@@ -3,7 +3,7 @@ import AdminMenu from "../../components/Layouts/AdminMenu";
 import CategoryForm from "../../components/CategoryForm";
 import { toast } from "react-toastify";
 import axios from "axios";
-import Modal from "../../components/Modal"; // Ensure the correct path
+
 
 const CreateCategory = () => {
   const [name, setName] = useState("");
