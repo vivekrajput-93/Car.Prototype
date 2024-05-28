@@ -5,6 +5,7 @@ import logo from "../assets/logo.png";
 import { useAuth } from "../context/auth";
 import { toast } from "react-toastify";
 
+
 function Navbar() {
   const [click, setClick] = useState(false);
   const [auth, setAuth] = useAuth();
@@ -67,7 +68,7 @@ function Navbar() {
           {auth.user ? (
             <div className=" max-[768px]:hidden">
               <h1
-                className="font-semibold cursor-pointer  border py-1  px-4 rounded-2xl "
+                className="font-semibold cursor-pointer capitalize  border py-1  px-4 rounded-2xl "
                 onClick={() => setIsopen((prev) => !prev)}
               >
                 {auth.user.name}
