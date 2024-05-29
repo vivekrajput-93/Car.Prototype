@@ -54,12 +54,12 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/coin" onClick={handleLinkClick}>
+            <Link to="/fleet" onClick={handleLinkClick}>
               Vehicle
             </Link>
           </li>
           <li>
-            <Link to="/exchange" onClick={handleLinkClick}>
+            <Link to="/contact" onClick={handleLinkClick}>
               Contact
             </Link>
           </li>

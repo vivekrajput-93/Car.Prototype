@@ -15,6 +15,9 @@ import { useAuth } from "./context/auth";
 import CreateCategory from "./pages/Admin/CreateCategory";
 import CreateProduct from "./pages/Admin/CreateProduct";
 import Products from "./pages/Admin/Products";
+import About from "./pages/About";
+import Fleet from "./pages/Fleet";
+import Contact from "./pages/Contact";
 
 function App() {
   const  [auth, setAuth] = useAuth()
@@ -26,6 +29,9 @@ function App() {
         <Navbar auth={auth} />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/fleet" element={<Fleet />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={auth.user?.role === 1 ? <AdminDashboard /> : <Dashboard /> } />
           <Route path="/create-category" element={ <CreateCategory />} />
