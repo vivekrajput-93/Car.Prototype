@@ -221,7 +221,7 @@ const UpdateProduct = () => {
                     UPDATE PRODUCT
                   </button>
                   <button
-                    className="border py-2 px-3 rounded-md bg-blue-600 text-white"
+                    className="border py-2 px-3 rounded-md bg-black text-white"
                     onClick={handleDelete}
                   >
                     DELETE PRODUCT
