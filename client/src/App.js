@@ -18,9 +18,10 @@ import Products from "./pages/Admin/Products";
 import About from "./pages/About";
 import Fleet from "./pages/Fleet";
 import Contact from "./pages/Contact";
+import UpdateProduct from "./pages/Admin/UpdateProduct";
 
 function App() {
-  const  [auth, setAuth] = useAuth()
+  const [auth, setAuth] = useAuth();
 
   return (
     <div className="App">
@@ -33,10 +34,14 @@ function App() {
           <Route path="/fleet" element={<Fleet />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={auth.user?.role === 1 ? <AdminDashboard /> : <Dashboard /> } />
-          <Route path="/create-category" element={ <CreateCategory />} />
+          <Route
+            path="/dashboard"
+            element={auth.user?.role === 1 ? <AdminDashboard /> : <Dashboard />}
+          />
+          <Route path="/create-category" element={<CreateCategory />} />
           <Route path="/create-product" element={<CreateProduct />} />
-          <Route path="/products" element={ <Products />} />
+          <Route path="/update-product" element={<UpdateProduct />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route
