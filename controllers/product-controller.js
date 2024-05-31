@@ -86,26 +86,24 @@ const getProduct = async (req, res) => {
   }
 };
 
-
-const getSingleProduct = async(req, res) => {
+const getSingleProduct = async (req, res) => {
   try {
     const products = await productService.getSingleProduct(req.params.slug);
     return res.status(201).send({
-      success : true,
-      message : "Single product fetched !",
-      products
-    })
+      success: true,
+      message: "Single product fetched !",
+      products,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send({
-      success : false,
-      message : "somethin went wrong at controller layer"
-    })
+      success: false,
+      message: "somethin went wrong at controller layer",
+    });
   }
-}
+};
 
-
- const getproductPhoto= async (req, res) => {
+const getproductPhoto = async (req, res) => {
   try {
     const productId = req.params.pid;
 
@@ -136,10 +134,73 @@ const getSingleProduct = async(req, res) => {
   }
 };
 
+const deleteProduct = async (req, res) => {
+  try {
+    const product = await productService.deleteProduct(req.params.pid);
+    return res.status(201).send({
+      success: true,
+      message: "Product deleted successfully ! ",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "somethin went wrong at controller layer",
+      err: error,
+    });
+  }
+};
+
+const updateProduct = async (req, res) => {
+  try {
+    const { mark, year, category, doors, transmission, fuel, ac, slug } =
+      req.fields;
+    const { photo } = req.files;
+    switch (true) {
+      case !mark:
+        return res.status(500).send({ error: "Mark is Required" });
+      case !transmission:
+        return res.status(500).send({ error: "Transmission is Required" });
+      case !year:
+        return res.status(500).send({ error: "Year is Required" });
+      case !category:
+        return res.status(500).send({ error: "Category is Required" });
+      case !doors:
+        return res.status(500).send({ error: "doors is Required" });
+      case !fuel:
+        return res.status(500).send({ error: "Fuel is Required" });
+      case !ac:
+        return res.status(500).send({ error: "AC is Required" });
+      case photo && photo.size > 1000000:
+        return res.status(500).send({ error: "Photo should be less than 1MB" });
+    }
+
+    const fields = { ...req.fields, slug: slugify(mark) };
+    const product = await productService.updateProduct(
+      req.params.pid,
+      fields,
+      photo
+    );
+    return res.status(201).send({
+      success: true,
+      message: "Product updated successfully !",
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error in controller layer",
+      err: error,
+    });
+  }
+};
 
 module.exports = {
   createProduct,
   getProduct,
   getSingleProduct,
-  getproductPhoto
+  getproductPhoto,
+  deleteProduct,
+  updateProduct
 };

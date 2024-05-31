@@ -55,6 +55,29 @@ class ProductRepository {
       console.log("something went wrong at repo layer")
     }
   }
+
+
+  async deleteById(pid) {
+    try {
+      const product = await productModel.deleteOne(pid);
+      return product
+    } catch (error) {
+      console.log(error);
+      console.log("somethin went wrong at service layer");
+    }
+  }
+
+  async updateById(pid, data){
+    try {
+      const product = await productModel.findByIdAndUpdate(pid, data, {new : true});
+      return product
+    } catch (error) {
+      console.log(error);
+      console.log('Error in repo layer')
+    }
+  } 
 }
+
+
 
 module.exports = ProductRepository;
