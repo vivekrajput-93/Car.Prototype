@@ -16,7 +16,6 @@ const Fleet = () => {
         "http://localhost:5002/api/v1/auth/get-product"
       );
       setProducts(data.product);
-      console.log(products);
     } catch (error) {
       console.log(error);
       console.log("somethin went wrong !");
