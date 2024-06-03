@@ -44,7 +44,7 @@ const CarDetails = () => {
             <button
               key={pro._id}
               onClick={() => handleButtonClick(pro)}
-                className="py-4 border"
+              className="py-4 border"
             >
               {pro.mark}
             </button>
@@ -54,6 +54,8 @@ const CarDetails = () => {
           {selectedProduct ? (
             <img
               src={`http://localhost:5002/api/v1/auth/product-photo/${selectedProduct._id}`}
+              width={600}
+              height={600}
               alt={selectedProduct.mark}
               onError={(e) => {
                 e.target.src = "/path/to/default-image.jpg";
@@ -61,6 +63,8 @@ const CarDetails = () => {
             />
           ) : (
             <img
+              width={600}
+              height={600}
               src={
                 firstProduct
                   ? `http://localhost:5002/api/v1/auth/product-photo/${firstProduct._id}`

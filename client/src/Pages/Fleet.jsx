@@ -18,7 +18,7 @@ const Fleet = () => {
       setProducts(data.product);
     } catch (error) {
       console.log(error);
-      console.log("somethin went wrong !");
+      console.log("Something went wrong!");
     }
   };
 
@@ -37,11 +37,8 @@ const Fleet = () => {
       <div className=" w-full  h-fit  ">
         <div className="flex gap-4 flex-wrap justify-center px-4 py-5 mt-5 w-[100%]">
           {products?.map((pro) => (
-            <Link>
-              <div
-                className="rounded-2xl bg-blue-50 p-4  flex flex-col justify-between items-center w-[280px] h-[360px]"
-                key={pro._id}
-              >
+            <Link key={pro._id}>
+              <div className="rounded-2xl bg-blue-50 p-4  flex flex-col justify-between items-center w-[280px] h-[360px]">
                 <h2 className="text-xl font-semibold">{pro.mark}</h2>
                 <p className="mb-1 font-medium">{pro.category.name}</p>
                 <div className="">
@@ -51,7 +48,6 @@ const Fleet = () => {
                     className=""
                   />
                 </div>
-
                 <div className="product-info flex justify-between items-center gap-8">
                   <div>
                     <img src={wheel} alt="wheel" width={15} height={15} />
@@ -74,7 +70,9 @@ const Fleet = () => {
                     <span className="text-sm font-semibold">{pro.fuel}</span>
                   </div>
                 </div>
-                <button className="mt-1  py-2 bg-blue-600 text-white font-medium w-full rounded-md shadow-md shadow-blue-400">Book now</button>
+                <button className="mt-1  py-2 bg-blue-600 text-white font-medium w-full rounded-md shadow-md shadow-blue-400">
+                  Book now
+                </button>
               </div>
             </Link>
           ))}
