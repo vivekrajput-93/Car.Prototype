@@ -229,3 +229,27 @@
   background-color: rgba(255, 255, 255, 0.6); /* White with 60% opacity */
 }
 
+/* Form section */ 
+
+.form-bg {
+  background-image: url("./assets/book-bg.png");
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-size: cover;
+
+  
+}
+.form-section {
+  @apply flex w-full  flex-wrap items-center px-5 gap-2 mt-8
+}
+
+.form-section div {
+  @apply flex flex-col gap-2
+}
+
+.form-section div div {
+  @apply flex flex-row  gap-3 mb-3
+}
+
+.form-section div div span {
+  @apply text-lg font-semibold
+}

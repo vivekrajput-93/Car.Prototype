@@ -26,7 +26,7 @@ const CarDetails = () => {
   };
 
   // Display the first product in the list when no product is selected
-  const firstProduct = products.length > 0 ? products[0] : null;
+  const firstProduct = products.length > 0 ? products[2] : null;
 
   return (
     <div className="mt-5 w-full">
