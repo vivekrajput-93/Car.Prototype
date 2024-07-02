@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import wheel from "../assets/steering-wheel.svg";
 import door from "../assets/door.svg";
 import gas from "../assets/gas.svg";
+import { toast } from "react-toastify";
 
 const Fleet = () => {
   const [products, setProducts] = useState([]);
@@ -21,6 +22,7 @@ const Fleet = () => {
       console.log("Something went wrong!");
     }
   };
+
 
   useEffect(() => {
     getAllProduct();
@@ -94,7 +96,10 @@ const Fleet = () => {
                     <span className="text-sm font-semibold">{pro.fuel}</span>
                   </div>
                 </div>
-                <button className="mt-1  py-2 bg-blue-600 text-white font-medium w-full rounded-md shadow-md shadow-blue-400">
+                <button
+                  className="mt-1  py-2 bg-blue-600 text-white font-medium w-full rounded-md shadow-md shadow-blue-400"
+                 
+                >
                   Book now
                 </button>
               </div>

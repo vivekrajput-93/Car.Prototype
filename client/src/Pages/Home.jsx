@@ -12,14 +12,14 @@ import Accordion from "../components/Acordion";
 import apple from "../assets/apple.png";
 import google from "../assets/google.png";
 import copy from "../assets/copy.png"
-import UserFrom from "../components/UserFrom";
+import UserForm from "../components/UserForm";
 
 const Home = () => {
   return (
     <div className="overflow-hidden">
       <Hero />
 
-      <UserFrom />
+      <UserForm />
       <div className="my-32 support max-[768px]:mt-1">
         <h3 className="text-center text-2xl font-bold mb-2">Plan your trip now</h3>
         <p className="text-center text-4xl font-bold">Quick & easy car rental</p>
